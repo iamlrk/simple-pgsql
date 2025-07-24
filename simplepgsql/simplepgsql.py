@@ -109,13 +109,16 @@ class SimplePgSQL:
         if not isinstance(query, (str, sql.Composable)):
             raise ValueError("Query must be a string")
         if isinstance(query, str):
-            _write_queries = ["INSERT", "UPDATE", "DELETE"]
+            # _write_queries = [" INSERT ", " UPDATE ", " DELETE "]
+            # _write_queries = [" DELETE "]
+            _write_queries = []
             if columns:
                 self.columns = columns
             else:
                 raise ValueError("Columns must be specified")
             if any(_w in query.upper() for _w in _write_queries):
-                raise ValueError("Only SELECT queries are allowed")
+                pass
+                # raise ValueError("Only SELECT queries are allowed")
             self.query_type = "read"
 
         try:
